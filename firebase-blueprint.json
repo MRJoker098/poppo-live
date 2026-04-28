@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and account information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "bio": { "type": "string" },
+        "coins": { "type": "integer" },
+        "level": { "type": "integer" },
+        "isLive": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "coins", "level"]
+    },
+    "Stream": {
+      "title": "Stream",
+      "description": "Active live stream session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "hostId": { "type": "string" },
+        "hostName": { "type": "string" },
+        "title": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "viewerCount": { "type": "integer" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["active", "ended"] }
+      },
+      "required": ["hostId", "hostName", "title", "status"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Message sent in a stream or room",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "text": { "type": "string" },
+        "type": { "type": "string", "enum": ["text", "gift"] },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "senderName", "text", "type", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile information"
+    },
+    "/streams/{streamId}": {
+      "schema": "Stream",
+      "description": "Active live streams"
+    },
+    "/streams/{streamId}/messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "Messages within a specific stream"
+    }
+  }
+}

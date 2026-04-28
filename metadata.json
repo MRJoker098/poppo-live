@@ -1,0 +1,6 @@
+{
+  "name": "Poppo Live",
+  "description": "A premium live-streaming social platform with real-time interaction, group party rooms, and virtual gifting.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["Real-time Chat", "Live Streaming Simulation", "Virtual Gifting system"]
+}
